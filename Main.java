@@ -1,8 +1,16 @@
+import java.util.Scanner; 
 public class Main {
     public static void main(String[] args) {
-        // 1 - Fibonacci Resultado esperado: 8 que seria o m5, a entrada consiste em 6 porque inicamos do m0
-        System.out.println("Resultado Fibonacci: " + fibonacci(6));
+        // 1 - Fibonacci
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Insira o valor que sera testado para fibonacci: ");
+        int numero = scanner.nextInt();
+
+        System.out.println("Resultado Fibonacci Linear: " + fibonacciLinar(numero));
+        System.out.println("Resultado Fibonacci Recursivo: " + fibonacciRecursiva(numero));
     }
+    
 
     /*
      1 - Fibonacci
@@ -17,7 +25,7 @@ public class Main {
      --- Criar uma função linear que resolva Fibonacci
      
      */
-    public static int fibonacci(int n) {
+    public static int fibonacciLinar(int n) {
         /*
          pelo que entendi a sequencia a sequencia de fibonacci consiste no seguinte
          se inicio com um casal de coelhos jovens, e conforme no primeiro mes eles
@@ -26,6 +34,10 @@ public class Main {
          utilizei esse video pra entender a sequencia:
          https://www.youtube.com/watch?v=cHZWZhHQq4g
          */
+        if(n < 0){
+            System.out.println("Valor invalido, insira um valor maior ou igual a 0");
+            return -1; // valor invalido
+        }
         if (n == 0 || n == 1) {
             return 1;
             // temos apenas um casal de coelhos, infantil no primeiro mes e adulto no 2, ele
@@ -54,15 +66,36 @@ public class Main {
             
             for (int i = 0; i < temp.length; i++) {
                 if (i == 0 || i == 1) {
-                    temp[i] = fibonacci(i);
+                    temp[i] = fibonacciLinar(i);
                 }else{
                     temp[i] = temp[i - 1] + temp[i - 2]; // a sequencia constiste na soma dos dois numeros anteriores
                 }
                 
-                System.out.println("Coelho:" +  i + "=" + temp[i]);
+               // System.out.println("Coelho:" +  i + "=" + temp[i]);
             }
 
             return temp[temp.length - 1];
         }
     }
+
+    public static int fibonacciRecursiva(int n) {
+        int result = 0;
+        if(n < 0){
+            System.out.println("Valor invalido, insira um valor maior ou igual a 0");
+            return 0; // valor invalido
+        }
+        if (n ==  0) {
+            return 1;
+        }else if(n ==  1){
+            return 1;
+        } else {
+            int temp[] = new int[n];
+
+            
+            result = fibonacciRecursiva(n - 1) + fibonacciRecursiva(n - 2);
+            }
+
+            return result;
+        }
+    
 }
