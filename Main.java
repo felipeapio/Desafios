@@ -37,8 +37,7 @@ public class Main {
         if(n < 0){
             System.out.println("Valor invalido, insira um valor maior ou igual a 0");
             return -1; // valor invalido
-        }
-        if (n == 0 || n == 1) {
+        } else if (n == 0 || n == 1) {
             return 1;
             // temos apenas um casal de coelhos, infantil no primeiro mes e adulto no 2, ele
             // so ira reproduzir a partir do 2 mes
@@ -62,14 +61,20 @@ public class Main {
             ok com base nisso
              */
           
-            int temp[] = new int[n];
+            int temp[] = new int[n+1]; //precisamos somar 1, pois iniciamos no m0 que ira dar 1
+            //System.out.println("Tamanho do array: " + temp.length);
             
             for (int i = 0; i < temp.length; i++) {
                 if (i == 0 || i == 1) {
                     temp[i] = fibonacciLinar(i);
+                    //System.out.println("Resultado no caso do i igual a 0 e 1: " + temp[i]);
+                    //System.out.println("Resultado no caso do i igual 1: " + temp[i]);
                 }else{
                     temp[i] = temp[i - 1] + temp[i - 2]; // a sequencia constiste na soma dos dois numeros anteriores
+                     //System.out.println("Resultado no caso do i diferente a 0 e 1: " + temp[i]);
                 }
+                //System.out.println("Resultado i igual a 0 : " + temp[0]);
+                //System.out.println("Resultado i igual a 1 : " + temp[1]); //igual a 0
                 
                // System.out.println("Coelho:" +  i + "=" + temp[i]);
             }
@@ -89,12 +94,8 @@ public class Main {
         }else if(n ==  1){
             return 1;
         } else {
-            int temp[] = new int[n];
-
-            
             result = fibonacciRecursiva(n - 1) + fibonacciRecursiva(n - 2);
             }
-
             return result;
         }
     
